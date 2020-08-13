@@ -29,6 +29,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/pages/data-table/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/pages/data-table/extensions/buttons/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/dropify/dist/css/dropify.css">
+
 </head>
 
 <body>

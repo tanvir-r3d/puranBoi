@@ -73,6 +73,13 @@
             </ul>
          </li>
 
+          <li class="">
+              <a href="/institute/">
+                  <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                  <span class="pcoded-mtext">Institute</span>
+              </a>
+          </li>
+
          <li class="">
             <a href="navbar-light.htm">
             <span class="pcoded-micon"><i class="feather icon-menu"></i></span>

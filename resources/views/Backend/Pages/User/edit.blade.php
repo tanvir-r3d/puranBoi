@@ -101,5 +101,4 @@ if (input.files && input.files[0]) {
 }
 }
 </script>
-{!! $validator->selector('#editForm') !!}
 @endsection

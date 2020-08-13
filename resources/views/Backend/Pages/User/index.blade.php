@@ -44,7 +44,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>
                                 <button class="btn btn-sm btn-info show" data-toggle="modal" data-target="#showModal" data-id="{{ $user->id }}"><i class="icofont icofont-eye-alt"></i></button>
-                                    <a href="/user/{{ Crypt::encryptString($user->id) }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="/user/{{ $user->id }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                     <a href="{{ route('user.destroy',($user->id)) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault(); Delete({{ $user->id }});"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>

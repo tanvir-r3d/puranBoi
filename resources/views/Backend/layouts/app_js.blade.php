@@ -27,9 +27,18 @@
     <script src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="/assets/dropify/dist/js/dropify.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script>
+    @foreach ($errors->all() as $error)
+    iziToast.warning({
+        title: "Warning",
+        message: "{{ $error }}",
+        position: 'topRight',
+    });
+    @endforeach
+
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type') }}";
       switch(type){

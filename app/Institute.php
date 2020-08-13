@@ -11,4 +11,8 @@ class Institute extends Model
     protected $primaryKey = 'inst_id';
 
     protected $fillable=['inst_name','inst_details'];
+
+    public function client(){
+        return $this->hasMany('App\Client','inst_id');
+    }
 }

@@ -23,19 +23,20 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $user = $this->route('/user');
         if('_method'=='PUT')
         {
             return [
                 'name'=>'required',
                 'image'=>'mimes:jpg,jpeg,png|max:2048',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email,'.$user.',id',
             ];
         }
         else{
             return [
                 'name'=>'required',
                 'image'=>'mimes:jpg,jpeg,png|max:2048',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email,'.$user.',id',
                 'password' => 'required|min:8',
                 'retype' => 'same:password',
             ];
