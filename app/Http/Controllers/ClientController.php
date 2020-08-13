@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\ClientDoc;
 use App\Http\Requests\ClientRequest;
+use App\Institute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use JsValidator;
 use App\Traits\FileTrait;
-use Illuminate\Support\Facades\Crypt;
-
+use DB;
 class ClientController extends Controller
 {
     use FileTrait;
@@ -20,7 +21,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::get();
+        $clients = Client::with("institute","clientdoc")->get();
         return view('Backend.Pages.Client.index', compact('clients'));
     }
 
@@ -32,8 +33,9 @@ class ClientController extends Controller
     public function create()
     {
         $rules = new ClientRequest;
+        $institutes=Institute::all();
         $validator = JsValidator::make($rules->rules(), [], $rules->name());
-        return view('Backend.Pages.Client.create', compact('validator'));
+        return view('Backend.Pages.Client.create', compact('validator','institutes'));
     }
 
     /**
@@ -42,14 +44,26 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
-        $formData = $request->all();
-        $formData['image'] = $this->VerifyStore($request, 'user', 'image');
-        Client::create($formData);
+        DB::beginTransaction();
+        $requestedData=$request->all();
+        $requestedData['client_image']=$this->VerifyStore($request,'client','client_image');
+        $client=new Client();
+        $client->fill($requestedData)->save();
+        for($i=0;$i<($request->row_no);$i++)
+        {
+                $data[]=[
+                    'client_doc'=> $this->MultiFile($request->client_doc[$i],'docs/client/','client'),
+                    'client_id' => $client->client_id,
+                    'doc_type'=>$request->doc_type[$i]
+                    ];
+        }
+        ClientDoc::insert($data);
+        DB::commit();
         $notification = array(
-            'title' => 'User',
-            'message' => 'Successfully! User Information Saved.',
+            'title' => 'Client',
+            'message' => 'Successfully! Client Information Saved.',
             'alert-type' => 'success',
         );
 
@@ -64,7 +78,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client=Client::findOrFail($id);
+        $client=Client::with("clientdoc","institute")->findOrFail($id);
         return response()->json($client);
     }
 
@@ -76,11 +90,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $rules = new ClientRequest;
-        $validator = JsValidator::make($rules->rules(), [], $rules->name());
-        $id=Crypt::decryptString($id);
-        $clients=Client::findOrFail($id);
-        return view("Backend.Pages.Client.edit",compact('clients','validator'));
+        $client=Client::with("clientdoc","institute")->findOrFail($id);
+        $institutes=Institute::all();
+        return view("Backend.Pages.Client.edit",compact('client','institutes'));
     }
 
     /**
@@ -88,26 +100,60 @@ class ClientController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        $user=Client::find($id);
-        if($request->hasFile('image'))
+        DB::beginTransaction();
+        $requestedData=$request->all();
+        $client=Client::findOrFail($id);
+        if($request->client_image)
         {
-            $user->image=$this->VerifyStore($request, 'user', 'image');
+            if ($client->client_image)
+            {
+                $old_path='/images/client/'.$client->client_image;
+                if (File::exists($old_path))
+                {
+                    File::delete($old_path);
+                }
+            }
+            $requestedData['client_image']=$this->VerifyStore($request,'client','client_image');
         }
-        $user->name=$request->name;
-        $user->phone=$request->phone;
-        $user->email=$request->email;
-        $user->save();
+        $client->fill($requestedData)->save();
+        $data=[];
+        if ($request->row_no>1)
+        {
+            for($i=0;$i<($request->row_no);$i++)
+            {
+                $data[]=[
+                    'client_doc'=> $this->MultiFile($request->client_doc[$i],'docs/client/','client'),
+                    'client_id' => $id,
+                    'doc_type'=>$request->doc_type[$i]
+                ];
+            }
+        } else {
+            if ($request->client_doc)
+            {
+                $data[]=[
+                    'client_doc' => $this->MultiFile($request->client_doc[0],'docs/client/','client'),
+                    'client_id' => $id,
+                    'doc_type'=>$request->doc_type[0]
+                ];
+            }
+        }
+        if ($data)
+        {
+            ClientDoc::insert($data);
+        }
+        DB::commit();
         $notification = array(
-            'title' => 'User',
-            'message' => 'Successfully! User Information Updated.',
+            'title' => 'Client',
+            'message' => 'Successfully! Client Information Update.',
             'alert-type' => 'success',
         );
 
-        return redirect('/user/')->with($notification);
+        return redirect()->back()->with($notification);
+
     }
 
     /**
@@ -127,14 +173,14 @@ class ClientController extends Controller
         if($delete)
         {
             $notification = array(
-                'title' => 'User',
-                'message' => 'Successfully! User Information Deleted.',
+                'title' => 'Client',
+                'message' => 'Successfully! Client Information Deleted.',
                 'alert-type' => 'success',
             );
         }
         else{
             $notification = array(
-                'title' => 'User',
+                'title' => 'Client',
                 'message' => 'Ooh No! Something Went Wrong.',
                 'alert-type' => 'error',
             );

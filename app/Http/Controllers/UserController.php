@@ -77,11 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $rules = new UserRequest;
-        $validator = JsValidator::make($rules->rules(), [], $rules->name());
-        $id=Crypt::decryptString($id);
         $user=User::findOrFail($id);
-        return view("Backend.Pages.User.edit",compact('user','validator'));
+        return view("Backend.Pages.User.edit",compact('user'));
     }
 
     /**

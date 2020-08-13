@@ -23,23 +23,24 @@ class ClientRequest extends FormRequest
      */
     public function rules()
     {
+        $client=$this->route('/client');
             return [
-                'client_name'=>'required',
-                'client_gender'=>'required',
-                'client_image'=>'mimes:jpg,jpeg,png|max:2048',
-                'client_email' => 'required|email',
-                'present_address'=>'required',
-                'client_dob'=>'required',
-                'client_inst'=>'required',
-                'client_dept'=>'required',
-                'client_doc'=>'mimes:jpg,jpeg,pdf|max:4048'
+                'client_name' => 'required',
+                'client_code' => 'required|unique:clients,client_code,'.$client.',client_id',
+                'client_image'=> 'mimes:jpg,jpeg,png|max:3048',
+                'client_email' => 'required|email|unique:clients,client_email,'.$client.',client_id',
+                'present_address' => 'required',
+                'client_dob' => 'required|date',
+                'inst_id' => 'required',
+                'client_dept' => 'required',
+                'client_doc.*' => 'mimes:jpeg,jpg,png,doc,docx,pdf,zip'
             ];
 
     }
     public function name(){
         return [
             'client_name'=>'Name',
-            'client_gender'=>'Gender',
+            'client_code'=>'Code',
             'client_image'=>'Image',
             'client_email' => 'Email',
             'present_address'=>'Present Address',

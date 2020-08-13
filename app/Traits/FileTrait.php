@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 trait FileTrait{
 
-    public static function VerifyStore(Request $request,$directory='unknown',$fieldname='image')
+    public function VerifyStore(Request $request,$directory='unknown',$fieldname='image')
     {
         if($request->hasFile($fieldname))
         {
@@ -31,4 +31,14 @@ trait FileTrait{
         }
 
     }
+
+    public function MultiFile($file,$directory='unknown',$genre="unknown")
+    {
+            $ext=$file->getClientOriginalExtension();
+            $path=public_path("{$directory}");
+            $name=$genre.'_'.time().rand(1,9).'.'.$ext;
+            $file->move($path, $name);
+            return $name;
+    }
+
 }

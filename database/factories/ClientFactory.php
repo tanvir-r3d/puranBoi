@@ -10,11 +10,11 @@ $factory->define(Client::class, function (Faker $faker) {
     return [
         'client_name' => $faker->name,
         'client_gender'=> rand(1,2),
-        'client_slug'=>(Str::slug($faker->name)),
+        'client_code'=>rand(999,10000),
         'permanent_address'=>$faker->address,
         'present_address'=>$faker->address,
         'client_dob'=>$faker->date,
-        'client_inst'=>$faker->city,
+        'inst_id'=>factory(\App\Institute::class)->create()->institute_id,
         'client_dept'=>$faker->word,
         'details'=>$faker->sentence,
         'client_email' => $faker->unique()->safeEmail,
