@@ -22,6 +22,10 @@
     <script type="text/javascript" src="/assets/js/script.min.js"></script>
     <script type="text/javascript" src="/vendor/jsvalidation/js/jsvalidation.js"></script>
 
+    <!-- light-box js -->
+    <script type="text/javascript" src="/bower_components/ekko-lightbox/js/ekko-lightbox.js"></script>
+    <script type="text/javascript" src="/bower_components/lightbox2/js/lightbox.js"></script>
+
     <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>

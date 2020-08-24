@@ -48,9 +48,11 @@ class ClientController extends Controller
     {
         DB::beginTransaction();
         $requestedData=$request->all();
+//        Client Image Insert via FileTrait
         $requestedData['client_image']=$this->VerifyStore($request,'client','client_image');
         $client=new Client();
         $client->fill($requestedData)->save();
+//      Client Doc Table Multiple File Insert
         for($i=0;$i<($request->row_no);$i++)
         {
                 $data[]=[

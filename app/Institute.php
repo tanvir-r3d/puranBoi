@@ -15,4 +15,8 @@ class Institute extends Model
     public function client(){
         return $this->hasMany('App\Client','inst_id');
     }
+
+    public function book(){
+        return $this->hasMany('App\Book','inst_id');
+    }
 }

@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="/assets/izitoast/dist/css/iziToast.min.css">
     <script src="/assets/izitoast/dist/js/iziToast.min.js" type="text/javascript"></script>
+    <!-- light-box css -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/ekko-lightbox/css/ekko-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/lightbox2/css/lightbox.css">
 
     <link rel="stylesheet" type="text/css" href="/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/pages/data-table/css/buttons.dataTables.min.css">

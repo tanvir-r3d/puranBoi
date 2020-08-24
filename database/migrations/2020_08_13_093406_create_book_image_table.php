@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookPriceTable extends Migration
+class CreateBookImageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateBookPriceTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_prices', function (Blueprint $table) {
-            $table->id('book_price_id');
+        Schema::create('book_images', function (Blueprint $table) {
+            $table->id('image_id');
             $table->unsignedBigInteger('book_id');
-            $table->integer('book_purchase_price');
-            $table->integer('book_rent_price');
-            $table->integer('book_resell_price');
-            $table->integer('book_rent_number')->nullable();
+            $table->string('image_type');
+            $table->string('book_image');
             $table->timestamps();
             $table->foreign('book_id')->references('book_id')->on('book_details')->onDelete('cascade');
         });
@@ -32,6 +30,6 @@ class CreateBookPriceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_prices');
+        Schema::dropIfExists('book_images');
     }
 }
