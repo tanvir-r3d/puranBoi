@@ -36,7 +36,7 @@ trait FileTrait{
     {
             $ext=$file->getClientOriginalExtension();
             $path=public_path("{$directory}");
-            $name=$genre.'_'.time().rand(1,9).'.'.$ext;
+            $name=$genre.'_'.time().rand(10,90).'.'.$ext;
             $file->move($path, $name);
             return $name;
     }

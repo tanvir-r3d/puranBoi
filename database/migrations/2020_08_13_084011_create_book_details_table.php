@@ -15,10 +15,11 @@ class CreateBookDetailsTable extends Migration
     {
         Schema::create('book_details', function (Blueprint $table) {
             $table->id('book_id');
-            $table->string('book_code',100)->unique();
+            $table->unsignedBigInteger('inst_id');
+            $table->string('book_dept');
             $table->string('book_name',100);
             $table->string('book_writter',100)->nullable();
-            $table->string('book_quantity');
+            $table->string('book_quantity')->nullable();;
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
