@@ -23,7 +23,6 @@ class BookController extends Controller
     public function index()
     {
         $books=Book::with('image','price','institute')->get();
-//        return response()->json($books);
         return view('Backend.Pages.Book.index', compact('books'));
     }
 
@@ -56,15 +55,26 @@ class BookController extends Controller
         Arr::set($requestedData, 'book_id', $book->book_id);
         $price->fill($requestedData)->save();
 //        Book Multiple Image Store
-        for($i=0;$i<count($request->book_image);$i++)
+        if(count($request->book_image)!=count($request->image_type))
         {
-            $data[]=[
-                'book_id' => $book->book_id,
-                'image_type'=>$request->image_type[$i],
-                'book_image'=> $this->MultiFile($request->book_image[$i],'images/book/','book'),
-                'created_at'=>date('Y-m-d H:i:s'),
-                'updated_at'=> date('Y-m-d H:i:s')
-            ];
+            $notification = array(
+                'title' => 'Book',
+                'message' => 'Book Cover Required!',
+                'alert-type' => 'warning',
+            );
+            return redirect()->back()->with($notification);
+        }
+        else{
+            for($i=0;$i<count($request->book_image);$i++)
+            {
+                $data[]=[
+                    'book_id' => $book->book_id,
+                    'image_type'=>$request->image_type[$i],
+                    'book_image'=> $this->MultiFile($request->book_image[$i],'images/book/','book'),
+                    'created_at'=>date('Y-m-d H:i:s'),
+                    'updated_at'=> date('Y-m-d H:i:s')
+                ];
+            }
         }
         BookImage::insert($data);
         DB::commit();
@@ -93,11 +103,13 @@ class BookController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function edit(Book $book)
+    public function edit($id)
     {
-        //
+        $institutes=Institute::all();
+        $book=Book::whereBookId($id)->with('image','price','institute')->first();
+        return view('Backend.Pages.Book.edit',compact('book','institutes'));
     }
 
     /**
@@ -105,11 +117,55 @@ class BookController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Book  $book
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        //
+        DB::beginTransaction();
+        $requestedData=$request->all();
+        $book->fill($requestedData)->save();
+
+        if($request->book_image)
+        {
+            $data=[];
+
+            if(count($requestedData['book_image'])>1 && count($requestedData['image_type'])==count($requestedData['book_image']))
+            {
+                for($i=0;$i<count($requestedData['book_image']);$i++)
+                {
+                    $data[]=[
+                        'book_image'=> $this->MultiFile($requestedData['book_image'][$i],'images/book/','book'),
+                        'book_id'   => $book->book_id,
+                        'image_type'=>$requestedData['image_type'][$i],
+                        'created_at'=>date('Y-m-d H:i:s'),
+                        'updated_at'=> date('Y-m-d H:i:s')
+                    ];
+                }
+                BookImage::insert($data);
+            } elseif($requestedData['book_image']) {
+
+                if ($requestedData['book_image'])
+                {
+                    $data[]=[
+                        'book_image'=> $this->MultiFile($requestedData['book_image'][0],'images/book/','book'),
+                        'book_id'   => $book->book_id,
+                        'image_type'=>$requestedData['image_type'][0],
+                        'created_at'=>date('Y-m-d H:i:s'),
+                        'updated_at'=> date('Y-m-d H:i:s')
+                    ];
+                    BookImage::insert($data);
+                }
+            }
+        }
+
+        DB::commit();
+        $notification = array(
+            'title' => 'Book',
+            'message' => 'Successfully! Book Information Update.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     /**

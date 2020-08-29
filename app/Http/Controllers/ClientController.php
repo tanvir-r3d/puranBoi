@@ -167,10 +167,6 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
-        $image_path = public_path("images/client/{$client->image}");
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-        }
         $delete=$client->delete();
         if($delete)
         {

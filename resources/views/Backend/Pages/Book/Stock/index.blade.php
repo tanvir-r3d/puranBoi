@@ -1,19 +1,18 @@
 @extends('Backend.layouts.app')
-@section('title') Book @endsection
-@section('page_title') Book @endsection
+@section('title') Book Stock @endsection
+@section('page_title') Book Stock @endsection
 @section('page_location')
     <li class="breadcrumb-item"><a href="/"> <i class="feather icon-home"></i> Home </a></li>
-    <li class="breadcrumb-item"> Book </li>
+    <li class="breadcrumb-item"> Book Stock </li>
 @endsection
 @section('content')
-
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header table-card-header">
                     <div class="row">
-                        <div class="col-md-10"><h4>Book List</h4></div>
-                        <div class="col-md-2"><a class="btn btn-primary float-right" href="/book/create">Add Book</a></div>
+                        <div class="col-md-10"><h4>Book Stock</h4></div>
+                        <div class="col-md-2"><a class="btn btn-primary float-right" href="/book_stock/create">Stock Book</a></div>
 
                     </div>
                 </div>
@@ -22,16 +21,9 @@
                         <table id="dataTable" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th width=10>#</th>
                                 <th>Name</th>
-                                <th>Writter</th>
-                                <th>Cover</th>
-                                <th>Institute</th>
-                                <th>Department</th>
-                                <th>Purchase</th>
-                                <th>Rent</th>
-                                <th>Resell</th>
-                                <th>Status</th>
+                                <th>Quantity</th>
                                 <th width=10>Action</th>
                             </tr>
                             </thead>
@@ -44,16 +36,7 @@
                                 <tr>
                                     <td><input type="checkbox" data-id="{{ $book->book_id }}"></td>
                                     <td>{{ $book->book_name }}</td>
-                                    <td>{{ $book->book_writter }}</td>
-                                    @php $cover=collect($book->image)->where('image_type','cover')->first() @endphp
-                                    <td><img src="/images/book/{{ $cover->book_image }}" width=55 alt=""></td>
-                                    <td>{{ $book->institute->inst_name }}</td>
-                                    <td>{{ $book->book_dept }}</td>
-
-                                    <td>{{ $book->price->book_purchase_price }}tk</td>
-                                    <td>{{ $book->price->book_rent_price }}tk</td>
-                                    <td>{{ $book->price->book_resell_price }}tk</td>
-                                    <td>{{ $book->status }}</td>
+                                    <td>{{ $book->book_quantity }}</td>
                                     <td>
                                         <button class="btn btn-sm btn-info show" data-toggle="modal" data-target="#showModal" data-id="{{ $book->book_id }}"><i class="icofont icofont-eye-alt"></i></button>
                                         <a href="/book/{{ $book->book_id }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
@@ -66,14 +49,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Writter</th>
-                                <th>Cover</th>
-                                <th>Institute</th>
-                                <th>Department</th>
-                                <th>Purchase Price</th>
-                                <th>Rent Price</th>
-                                <th>Resell Price</th>
-                                <th>Status</th>
+                                <th>Quantity</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -101,15 +77,15 @@
                                 <div class="col-md-12">
                                     <!-- Multiple image card start -->
 
-                                        <div class="card-header">
-                                            <h5>Books Images</h5>
+                                    <div class="card-header">
+                                        <h5>Books Images</h5>
 
+                                    </div>
+                                    <div class="card-block">
+                                        <p>Click on the picture to see it properly.</p>
+                                        <div class="row"  id="book_img">
                                         </div>
-                                        <div class="card-block">
-                                            <p>Click on the picture to see it properly.</p>
-                                            <div class="row"  id="book_img">
-                                            </div>
-                                        </div>
+                                    </div>
                                     <!-- Multiple image card end -->
                                 </div>
                             </div>
@@ -203,32 +179,32 @@
                     });
 
                 });
-function Delete(id){
-    var id=id;
-    iziToast.question({
-        timeout: 20000,
-        close: true,
-        overlay: true,
-        displayMode: 'once',
-        id: 'question',
-        zindex: 999,
-        title: 'Wait!',
-        message: 'Are you sure? Once Deleted Can\'t be undone!',
-        position: 'center',
-        buttons: [
-            ['<button><b>YES</b></button>', function () {
-                var $form = $("#deleteForm").closest('form');
+                function Delete(id){
+                    var id=id;
+                    iziToast.question({
+                        timeout: 20000,
+                        close: true,
+                        overlay: true,
+                        displayMode: 'once',
+                        id: 'question',
+                        zindex: 999,
+                        title: 'Wait!',
+                        message: 'Are you sure? Once Deleted Can\'t be undone!',
+                        position: 'center',
+                        buttons: [
+                            ['<button><b>YES</b></button>', function () {
+                                var $form = $("#deleteForm").closest('form');
 
-                $form.attr('action','/book/'+id);
-                $form.submit()
-            }, true],
-            ['<button>NO</button>', function (instance, toast) {
+                                $form.attr('action','/book/'+id);
+                                $form.submit()
+                            }, true],
+                            ['<button>NO</button>', function (instance, toast) {
 
-                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                                instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
 
-            }],
-        ],
-    });
-}
+                            }],
+                        ],
+                    });
+                }
             </script>
 @endsection

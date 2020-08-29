@@ -16,7 +16,7 @@ class CreateBookCodeTable extends Migration
         Schema::create('book_codes', function (Blueprint $table) {
             $table->id('book_code_id');
             $table->unsignedBigInteger('book_id');
-            $table->string('booke_unique_code',100)->unique();
+            $table->string('book_unique_code',100)->unique();
             $table->string('rent_status',100);
             $table->timestamps();
             $table->foreign('book_id')->references('book_id')->on('book_details')->onDelete('cascade');

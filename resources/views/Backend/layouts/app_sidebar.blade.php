@@ -86,7 +86,7 @@
                       </a>
                   </li>
                   <li class="">
-                      <a href="/book">
+                      <a href="/book_stock">
                           <span class="pcoded-mtext">Stock Book</span>
                       </a>
                   </li>

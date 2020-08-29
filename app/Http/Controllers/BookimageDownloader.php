@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\ClientDoc;
 
-class DocDownloader extends Controller
+use App\BookImage;
+
+class BookimageDownloader extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function __invoke($id)
     {
-        $doc=ClientDoc::findOrFail($id);
-        $file_path = public_path('docs/client/'.$doc->client_doc);
+        $img=BookImage::findOrFail($id);
+        $file_path = public_path('images/book/'.$img->book_image);
         return response()->download($file_path);
     }
 }

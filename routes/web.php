@@ -14,4 +14,8 @@ Route::resource('institute','InstituteController');
 Route::get('client/doc/{id}','DocDownloader');
 Route::post('client/doc/{id}/delete','DocDeleteController');
 
+Route::get('book/image/{id}','BookimageDownloader');
+Route::post('book/image/{id}/delete','BookimageDeleteController');
+
 Route::resource('book', 'BookController');
+Route::resource('book_stock', 'BookStockController');

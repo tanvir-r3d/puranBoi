@@ -24,9 +24,7 @@ class Client extends Model
     public static function boot() {
         parent::boot();
         self::deleting(function($client) {
-            $client->clientdoc()->each(function($doc) {
-                File::delete('/docs/client/'.$doc->client_doc);
-            });
+
         });
     }
 }

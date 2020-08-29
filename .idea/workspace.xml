@@ -20,26 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c300eb18-4e38-4c49-8dd0-f6c4b97f9dca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Institute/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Book.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Client.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ClientDoc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ClientDoc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InstituteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClientRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClientRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Institute.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Institute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DocDownloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocDownloader.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Traits/FileTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/FileTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ClientFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ClientFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_03_064930_create_client_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_03_064930_create_client_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Client/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/User/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/User/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/User/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/User/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/layouts/app_css.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/layouts/app_css.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/layouts/app_js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/layouts/app_js.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_091029_create_book_code_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_091029_create_book_code_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Backend/layouts/app_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/layouts/app_sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -182,9 +172,10 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/EBajara" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -223,7 +214,12 @@
       <workItem from="1597211518067" duration="4304000" />
       <workItem from="1597254427457" duration="1379000" />
       <workItem from="1597255859533" duration="596000" />
-      <workItem from="1597292467637" duration="5006000" />
+      <workItem from="1597292467637" duration="7491000" />
+      <workItem from="1597352547859" duration="13000" />
+      <workItem from="1597479836761" duration="11424000" />
+      <workItem from="1598274482065" duration="21936000" />
+      <workItem from="1598421040003" duration="11013000" />
+      <workItem from="1598721508366" duration="9842000" />
     </task>
     <servers />
   </component>
@@ -247,10 +243,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="634" y="60" key="#CLI_Interpreters/0.0.1600.860@0.0.1600.860" timestamp="1597255692938" />
-    <state x="903" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596553542762">
+    <state x="903" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598427423057">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="903" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1596553542762" />
+    <state x="903" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1598427423057" />
     <state x="580" y="184" key="FileChooserDialogImpl" timestamp="1596997750809">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -271,6 +267,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1596537288934" />
+    <state x="634" y="349" key="NewPhpFileDialog" timestamp="1598726265256">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="634" y="349" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1598726265256" />
     <state x="596" y="52" width="916" height="708" key="SettingsEditor" timestamp="1597255827955">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -283,10 +283,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1596639565901" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1596873924499">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1598302502499">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1596873924499" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1598302502499" />
     <state x="522" y="335" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1596558472972">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -31,15 +31,5 @@ class Book extends Model
         return $this->hasMany('App\BookCode','book_id');
     }
 
-    public static function boot() {
-        parent::boot();
-        self::deleting(function($book) {
 
-            $book->image()->each(function($img) {
-                $path=public_path('images/book/').$img->book_image;
-                if(File::exists($path))
-                unlink($path);
-            });
-        });
-    }
 }
