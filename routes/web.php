@@ -19,3 +19,4 @@ Route::post('book/image/{id}/delete','BookimageDeleteController');
 
 Route::resource('book', 'BookController');
 Route::resource('book_stock', 'BookStockController');
+Route::get('book_stock/create/{id}', 'BookStockController@create');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookCodeRequest;
 use Illuminate\Http\Request;
 use App\Book;
 use App\BookCode;
@@ -24,10 +25,10 @@ class BookStockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $books=Book::all();
-        return view('Backend.Pages.Book.Stock.create',compact('books'));
+        $book=Book::find($id);
+        return view('Backend.Pages.Book.Stock.create',compact('book'));
     }
 
     /**
@@ -36,15 +37,12 @@ class BookStockController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookCodeRequest $request)
     {
         $book_unique_codes=array_filter($request->book_unique_code, static function($var){return $var !== null;});
+
         if (count($book_unique_codes)==$request->book_quantity)
         {
-            $book=Book::find($request->book);
-            $book->book_quantity=$request->book_quantity;
-            $book->save();
-
             foreach(($book_unique_codes) as $v)
             {
                 $data[]=[
@@ -52,7 +50,9 @@ class BookStockController extends Controller
                     'book_id'=>$request->book];
             }
             BookCode::insert($data);
-
+            $book=Book::find($request->book);
+            $book->book_quantity=$request->book_quantity;
+            $book->save();
             $notification = array(
                 'title' => 'Book Stock',
                 'message' => 'Successfully! Book Stock Updated.',
@@ -71,6 +71,7 @@ class BookStockController extends Controller
 
             return redirect()->back()->with($notification);
         }
+
     }
 
     /**
@@ -81,7 +82,8 @@ class BookStockController extends Controller
      */
     public function show($id)
     {
-        //
+        $book_codes=Book::find($id)->with('code')->get();
+        return response()->json($book_codes);
     }
 
     /**

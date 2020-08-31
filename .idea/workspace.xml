@@ -21,16 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c300eb18-4e38-4c49-8dd0-f6c4b97f9dca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Book.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Client.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DocDownloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocDownloader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/FileTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/FileTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_091029_create_book_code_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_091029_create_book_code_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Backend/layouts/app_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/layouts/app_sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookStockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookStockController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/Stock/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/Stock/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/Stock/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Backend/Pages/Book/Stock/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +212,9 @@
       <workItem from="1597479836761" duration="11424000" />
       <workItem from="1598274482065" duration="21936000" />
       <workItem from="1598421040003" duration="11013000" />
-      <workItem from="1598721508366" duration="9842000" />
+      <workItem from="1598721508366" duration="10237000" />
+      <workItem from="1598848974770" duration="2532000" />
+      <workItem from="1598891940409" duration="4003000" />
     </task>
     <servers />
   </component>

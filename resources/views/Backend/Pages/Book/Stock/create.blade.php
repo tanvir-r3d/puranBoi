@@ -28,12 +28,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="book">Book</label>
-                                    <select name="book" class="form-control">
-                                        <option selected disabled hidden> SELECT BOOK</option>
-                                        @foreach($books as $book)
-                                            <option value={{$book->book_id}}>{{$book->book_name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input name="book_name" class="form-control" value="{{$book->book_name}}" readonly disabled>
+                                    <input name="book" class="form-control" value="{{$book->book_id}}" hidden>
                                 </div>
                             </div>
 

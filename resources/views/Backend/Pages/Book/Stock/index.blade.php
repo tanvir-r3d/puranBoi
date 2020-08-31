@@ -38,6 +38,7 @@
                                     <td>{{ $book->book_name }}</td>
                                     <td>{{ $book->book_quantity }}</td>
                                     <td>
+                                        <a href="/book_stock/create/{{ $book->book_id }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
                                         <button class="btn btn-sm btn-info show" data-toggle="modal" data-target="#showModal" data-id="{{ $book->book_id }}"><i class="icofont icofont-eye-alt"></i></button>
                                         <a href="/book/{{ $book->book_id }}/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('book.destroy',($book->book_id)) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault(); Delete({{ $book->book_id }});"><i class="fa fa-trash"></i></a>
@@ -65,7 +66,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Book Details</h4>
+                        <h4 class="modal-title">Stock Details</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -78,7 +79,7 @@
                                     <!-- Multiple image card start -->
 
                                     <div class="card-header">
-                                        <h5>Books Images</h5>
+                                        <h5>Books Cover</h5>
 
                                     </div>
                                     <div class="card-block">
@@ -93,36 +94,29 @@
 
                             <div class="card-block">
                                 <div class="row invoive-info">
-                                    <div class="col-md-4 col-xs-12 invoice-client-info">
+                                    <div class="col-md-6 col-xs-12 col-sm-6 invoice-client-info">
                                         <h6>Book Information :</h6>
                                         <h6 class="m-0 text-primary">Name: </h6>
                                         <p id="book_name"></p>
                                         <h6 class="m-0 text-primary">Writter: </h6>
                                         <p id="book_writter"></p>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <table class="table table-responsive invoice-table invoice-order table-borderless">
-                                            <tbody>
-                                            <tr>
-                                                <th class="text-primary">Purchase Price: </th>
-                                                <td id="book_purchase_price"></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-primary">Rent Price: </th>
-                                                <td id="book_rent_price"></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-primary">Resell Price: </th>
-                                                <td id="book_resell_price"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h6 class="m-b-20">Quantity: <span id="book_quantity"></span></h6>
+                                        <h6 class="text-uppercase">On Rent: <span id="book_rent"></span></h6>
+                                        <h6 class="text-uppercase">Sold: <span id="book_sold"></span></h6>
                                     </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <h6 class="m-b-20">Institute: <span id="inst"></span></h6>
-                                        <h6 class="text-uppercase">Department :
-                                            <span id="book_dept"></span>
-                                        </h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                            <table class="table table-responsive invoice-table invoice-order table-borderless">
+                                                <thead>
+                                                <th>SL</th>
+                                                <th>Code</th>
+                                                <th>Status</th>
+                                                </thead>
+                                                <tbody id="book_codes"></tbody>
+                                            </table>
                                     </div>
                                 </div>
 
@@ -141,12 +135,13 @@
                     $(".show").click(function(){
                         var id=$(this).attr("data-id");
                         $.ajax({
-                            url:"/book/"+id,
+                            url:"/book_stock/"+id,
                             type:'get',
                             data:{"_token":"{{ csrf_token() }}"},
                             dataType:"json",
                             success:function(data)
                             {
+                                console.log(data);
                                 let value=data[0];
                                 $("#book_name").text(value.book_name);
                                 $("#book_writter").text(value.book_writter);
